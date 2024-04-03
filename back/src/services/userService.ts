@@ -3,7 +3,9 @@ import IUser from "../interfaces/IUser"
 const users: IUser[] = []
 let id: number = 1;
 
-export const getUsersService = async () => {}
+export const getUsersService = async ():Promise<IUser[]> => {
+   return users
+}
 
 export const createUserService = async(userData: UserDto): Promise<IUser> => {
  const newUser: IUser = {
