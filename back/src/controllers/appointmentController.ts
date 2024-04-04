@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import IUser from "../interfaces/IUser"
 
 export const createAppointment = async (req:Request ,res:Response) => {
     res.send("Crear un nuevo turno")
