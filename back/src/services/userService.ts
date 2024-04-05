@@ -1,48 +1,40 @@
 import IUser from "../interfaces/IUser";
 import credentialService from "./credentialService";
 
-const users: IUser[] = [
-   {
-      id: 1,
-      name: "Camila",
-      email: "camila@mail.com",
-      birthdate: new Date (1998, 11, 12),
-      nDni: "483733",
-      credentialsId: 1
-   },
- ];
+const users: IUser[] = [];
 
- const userService = {
-   
-   getAllUsers: (): IUser[] => {
-     return users;
-   },
-   
-  getUserById: (id: number): IUser | undefined => {
-   return users.find(user => user.id === id);
- },
+const userService = {
 
- createUser: (name: string, email: string, birthdate: Date, nDni: string, username: string, password: string): IUser => {
-   // Crear las credenciales
-   const credentialsId = credentialService.createCredential(username, password);
+  getAllUsers: async (): Promise<IUser[]> => {
+    return users;
+  },
 
-   // Crear el usuario con las credenciales
-   const newUser: IUser = {
-     id: users.length + 1,
-     name: name,
-     email: email,
-     birthdate: birthdate,
-     nDni: nDni,
-     credentialsId: credentialsId,
-   };
+  getUserById: async (id: number): Promise<IUser> => {
+    const foundUser: IUser | undefined = users.find(user => user.id === id);
+    if (!foundUser) throw Error('No se encontro ningun usuario con ese ID')
+    return foundUser;
+  },
 
-   // Agregar el nuevo usuario al arreglo
-   users.push(newUser);
+  createUser: async (name: string, email: string, birthdate: Date, nDni: string, username: string, password: string): Promise<IUser> => {
+    // Crear las credenciales
+    const credentialsId = await credentialService.createCredential(username, password);
 
-   // Retornar el nuevo usuario creado
-   return newUser;
- },
+    // Crear el usuario con las credenciales
+    const newUser: IUser = {
+      id: users.length + 1,
+      name: name,
+      email: email,
+      birthdate: birthdate,
+      nDni: nDni,
+      credentialsId: credentialsId,
+    };
+
+    // Agregar el nuevo usuario al arreglo
+    users.push(newUser);
+
+    // Retornar el nuevo usuario creado
+    return newUser;
+  },
 }
 
 export default userService;
- 
