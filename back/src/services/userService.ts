@@ -1,12 +1,15 @@
+import { AppDataSource } from "../config/data-source";
+import { User } from "../entities/User";
 import IUser from "../interfaces/IUser";
 import credentialService from "./credentialService";
 
-const users: IUser[] = [];
+const users: IUser[] = []
 
 const userService = {
 
-  getAllUsers: async (): Promise<IUser[]> => {
-    return users;
+  getAllUsers: async ()=> {
+   const users = await AppDataSource.getRepository(User).find();
+   return users; 
   },
 
   getUserById: async (id: number): Promise<IUser> => {
