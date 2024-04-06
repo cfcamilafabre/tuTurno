@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import { appointmentService } from '../services/appointmentService';
+import { Appointment } from "../entities/Appointment";
 
 export const createAppointment = async (req: Request, res: Response) => {
   try {
     const { date, time, userId } = req.body;
-    const newAppointment = await appointmentService.createAppointment(date, time, userId);
+    const newAppointment: Appointment = await appointmentService.createAppointment( date, time, userId );
     res.status(201).json(newAppointment);
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
@@ -13,7 +14,7 @@ export const createAppointment = async (req: Request, res: Response) => {
 
 export const getAppointments = async (req: Request, res: Response) => {
   try {
-    const appointments = await appointmentService.getAllAppointments();
+    const appointments: Appointment[] = await appointmentService.getAllAppointments();
     res.json(appointments);
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
@@ -32,8 +33,8 @@ export const cancelAppointment = async (req: Request, res: Response) => {
 
 export const getAppointmentById = async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id);
-    const appointment = await appointmentService.getAppointmentById(id);
+    const { id } = req.params
+    const appointment: Appointment | null  = await appointmentService.getAppointmentById(Number(id));
     if (appointment) {
       res.json(appointment);
     } else {

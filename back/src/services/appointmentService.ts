@@ -1,47 +1,31 @@
+import { AppDataSource } from "../config/data-source";
+import { Appointment } from "../entities/Appointment";
 import IAppointment from "../interfaces/IAppointment";
-
-const appointments: IAppointment[] = [
-  {
-    id: 1,
-    date: new Date(2024, 3, 5),
-    time: '10:00',
-    userId: 1,
-    status: 'active',
-  }
-]
 
 const appointmentService = {
 
-  getAllAppointments: (): IAppointment[] => {
+  getAllAppointments: async (): Promise<Appointment[]> => {
+    const appointments = await AppDataSource.getRepository(Appointment).find();
     return appointments;
   },
 
-  getAppointmentById: (id: number): IAppointment | undefined => {
-    return appointments.find(appointment => appointment.id === id);
+  getAppointmentById: async (id: number): Promise<Appointment | null> => {
+    const appointment = await AppDataSource.getRepository(Appointment).findOneBy({
+      id
+    })
+    return appointment
   },
 
-  createAppointment: (date: Date, time: string, userId: number): IAppointment => {
-    const newAppointment: IAppointment = {
-      id: appointments.length + 1,
-      date: date,
-      time: time,
-      userId: userId,
-      status: 'active',
-    };
-
-    appointments.push(newAppointment);
-
-    return newAppointment;
+  createAppointment: async (date: Date, time: string, userId: number) => {
+    const appointment = await AppDataSource.getRepository(Appointment).create({ date,time,userId })
+    const result = await AppDataSource.getRepository(Appointment).save(appointment);
+    return appointment
   },
 
 
-  cancelAppointment: (id: number): void => {
-    const appointment = appointments.find(appointment => appointment.id === id);
-
-    if (appointment) {
-      appointment.status = 'cancelled';
-    }
-  },
+  cancelAppointment: (id: number)=> {}
+  
 };
 
 export { appointmentService }
+

@@ -1,10 +1,12 @@
 import { Request, Response, request, response } from "express";
 import userService from "../services/userService";
+import { User } from "../entities/User";
+
 
 export const createUser = async (req: Request, res: Response) => {
   try {
     const { name, email, birthdate, nDni, username, password } = req.body;
-    const newUser = await userService.createUser(name, email, birthdate, nDni, username, password);
+    const newUser: User = await userService.createUser({ name, email, birthdate, nDni, username, password });
     res.status(201).json(newUser);
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
@@ -13,7 +15,7 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
-    const users = await userService.getAllUsers();
+    const users: User[] = await userService.getAllUsers();
     res.json(users);
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
@@ -21,17 +23,9 @@ export const getUsers = async (req: Request, res: Response) => {
 };
 
 export const getUserById = async (req: Request, res: Response) => {
-  try {
-    const id = parseInt(req.params.id);
-    const user = await userService.getUserById(id);
-    if (user) {
-      res.json(user);
-    } else {
-      res.status(404).json({ message: 'User not found' });
-    }
-  } catch (error) {
-    res.status(500).json({ message: 'Internal server error' });
-  }
+ const { id } = req.params
+ const user: User | null = await userService.getUserByIdService (Number(id))
+ res.status(200).json(user)
 };
 
 export const loginUser = async (req: Request, res: Response) => {
@@ -39,5 +33,7 @@ export const loginUser = async (req: Request, res: Response) => {
 }
 
 export const deleteUser = async (req: Request, res: Response) => {
-  res.send("Eliminar usuario")
+  const { id } = req.body
+  await userService.deleteUser(id)
+  res.status (200).json({message: "Eliminado correctamente"})
 }
