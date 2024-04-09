@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import { appointmentService } from '../services/appointmentService';
 import { Appointment } from "../entities/Appointment";
+import appointmentDto from "../dtos/appointmentDto";
 
 export const createAppointment = async (req: Request, res: Response) => {
   try {
     const { date, time, userId } = req.body;
-    const newAppointment: Appointment = await appointmentService.createAppointment( date, time, userId );
+    const newAppointment: Appointment = await appointmentService.createAppointment({ date, time, userId });
     res.status(201).json(newAppointment);
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });

@@ -1,6 +1,7 @@
 import { AppDataSource } from "../config/data-source";
 import { Appointment } from "../entities/Appointment";
-import IAppointment from "../interfaces/IAppointment";
+import appointmentdDto from "../dtos/appointmentDto";
+import { User } from "../entities/User";
 
 const appointmentService = {
 
@@ -16,10 +17,20 @@ const appointmentService = {
     return appointment
   },
 
-  createAppointment: async (date: Date, time: string, userId: number) => {
-    const appointment = await AppDataSource.getRepository(Appointment).create({ date,time,userId })
-    const result = await AppDataSource.getRepository(Appointment).save(appointment);
-    return appointment
+  createAppointment: async ( appointment:appointmentdDto) => {
+    const newAppointment = await AppDataSource.getRepository(Appointment).create(appointment)
+    await AppDataSource.getRepository(Appointment).save(newAppointment);
+    
+     const user = await AppDataSource.getRepository(User).findOneBy({
+        id: appointment.userId
+     })
+
+     if (user) {
+      newAppointment.user = user;
+      AppDataSource.getRepository(Appointment).save(newAppointment)
+     }
+
+     return newAppointment;
   },
 
 

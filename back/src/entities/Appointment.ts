@@ -16,13 +16,10 @@ export class Appointment {
     @Column()
     time: string;
 
-    @Column()
-    userId: number;
-
-    @Column()
+    @Column({ default : "active"})
     status: "active" | "cancelled";
 
-    @ManyToOne (() => User , user => user.appointments)
+    @ManyToOne (() => User , (user) => user.appointments)
     @JoinColumn({ name: 'userId' })
     user: User;
 }

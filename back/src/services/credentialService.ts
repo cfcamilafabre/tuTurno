@@ -1,6 +1,8 @@
 import { AppDataSource } from "../config/data-source";
 import { Credential } from "../entities/Credential";
+import { User } from "../entities/User";
 import ICredential from "../interfaces/ICredential";
+import credentialDto from "../dtos/credentialDto";
 
 
 // Funcion creadora de credencial
@@ -8,10 +10,21 @@ import ICredential from "../interfaces/ICredential";
 
 const credentialService = {
 
-  createCredential: async (username: string, password: string)=> {
-    const credential = await AppDataSource.getRepository(Credential).create({username, password})
-    const result = await AppDataSource.getRepository(Credential).save(credential)
-    return credential.id;
+  createCredential: async (credential: credentialDto)=> {
+    const newCredential = await AppDataSource.getRepository(Credential).create(credential)
+    await AppDataSource.getRepository(Credential).save(newCredential);
+
+    const user = await AppDataSource.getRepository(User).findOneBy({
+      id: credential.userId
+    })
+    
+    if (user) {
+      user.credential = newCredential
+      await AppDataSource.getRepository(User).save(user)
+    } else {
+      throw Error("Usuario inexistente")
+    }
+    return newCredential;
   },
   
   //funcion validadora

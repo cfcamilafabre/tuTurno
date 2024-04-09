@@ -24,10 +24,11 @@ export class User {
 
 
     @OneToOne(() => Credential)
-    @JoinColumn({ name: 'credentialsId' })
-    credentials: Credential;
+    @JoinColumn({ name: 'credential' })
+    credential: Credential;
 
-    @OneToMany  (() => Appointment, appointment => appointment.user)
+    
+    @OneToMany  (() => Appointment, (appointment) => appointment.user)
     appointments: Appointment[];
 }
 
