@@ -1,8 +1,16 @@
 import './App.css'
-import Home from './views/Home'
+import Home from './views/Home/Home'
+import Navbar from './components/NavBar/Navbar'
+import MisTurnos from './views/MisTurnos/MisTurnos'
 
 function App() {
-  return <Home/>
+  return (
+  <>
+  <Navbar/>
+  <Home/>
+  {/* <MisTurnos/> */}
+  </>
+) 
 }
 
 
