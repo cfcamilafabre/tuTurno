@@ -1,0 +1,34 @@
+.navBar {
+    display: flex;
+    flex-direction: row;
+}
+
+a {
+    color: rgba(57, 17, 69, var(--tw-text-opacity));
+    text-decoration: none;
+    font-size: 1.2vw;
+    font-weight: 600;
+    line-height: 1.43;
+
+}
+
+.liNavBar {
+    margin: 8px;
+    text-decoration: none;
+}
+
+.navContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fafafa;
+    color: rgba(57, 17, 69, var(--tw-text-opacity));
+    padding: 10px;
+}
+
+.logo{
+    width: 180px;
+}
