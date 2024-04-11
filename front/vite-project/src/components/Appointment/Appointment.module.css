@@ -1,0 +1,56 @@
+.cardAppointment{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+    width: 180px;
+    height: 140px;
+    border: 1px solid #a1a1a1;
+    border-radius: 5%;
+    transition: background-color 0.3s;
+}
+
+.cardAppointment:hover {
+    cursor:pointer; 
+    background-color:#ececec;
+    ;
+}
+
+.canceled{
+    color: rgb(207, 0, 0);
+}
+
+.liCard{
+    margin:5px;
+}
+
+h1{
+    color: rgba(57, 17, 69, var(--tw-text-opacity));
+    text-decoration: none;
+    font-size: 1.9vw;
+    font-weight: 600;
+    line-height: 1.43;
+    margin-top: 20px;
+    display:flex;
+    justify-content: center;
+}
+
+.buttonCancel{
+    font-family: inherit;
+    font-size: 100%;
+    line-height: inherit;
+    color: rgba(57, 17, 69, var(--tw-text-opacity));
+    background: #fafafa ;
+    margin: 10px;
+    padding: 10px;
+    border: 0.3px solid #a1a1a1;
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+.buttonCancel:hover{
+    cursor: pointer;
+    background-color: #7c7c7c;
+}
