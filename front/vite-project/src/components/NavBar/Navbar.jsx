@@ -7,12 +7,20 @@ const Navbar = () => {
             <div>
                 <a href=""><img src={logo} className={styles.logo} alt="Logo" /></a>
             </div>
-            <div>
+            <div className={styles.containerUl}>
                 <ul className={styles.navBar}>
-                    <li className={styles.liNavBar}><a href="">Inicio</a></li>
-                    <li className={styles.liNavBar}><a href="">Mis turnos</a></li>
-                    <li className={styles.liNavBar}><a href="">Contacto</a></li>
-                    <li className={styles.liNavBar}><a href="">Login</a></li>
+                    <div>
+                        <li className={styles.liNavBar}><a className="nav-link" href="">Inicio</a></li>
+                    </div>
+                    <div>
+                        <li className={styles.liNavBar}><a className="nav-link" href="">Mis turnos</a></li>
+                    </div>
+                    <div>
+                        <li className={styles.liNavBar}><a className="nav-link" href="">Registrarme</a></li>
+                    </div>
+                    <div>
+                        <li className={styles.liNavBar}><a className="nav-link" href="">Login</a></li>
+                    </div>
                 </ul>
             </div>
         </div>

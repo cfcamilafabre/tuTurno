@@ -5,8 +5,8 @@ import appointmentDto from "../dtos/appointmentDto";
 
 export const createAppointment = async (req: Request, res: Response) => {
   try {
-    const { date, time, userId } = req.body;
-    const newAppointment: Appointment = await appointmentService.createAppointment({ date, time, userId });
+    const { description, date, time, userId } = req.body;
+    const newAppointment: Appointment = await appointmentService.createAppointment({ description, date, time, userId });
     res.status(201).json(newAppointment);
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });

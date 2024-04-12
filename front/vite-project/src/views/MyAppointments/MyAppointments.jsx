@@ -12,7 +12,7 @@ const MyAppointments = () => {
                 const response = await axios.get('http://localhost:3000/appointments');
                 setAppointments(response.data);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                ('Error al obtener los datos', error);
             }
         };
 
@@ -27,10 +27,10 @@ const MyAppointments = () => {
                     return (
                         <Appointment
                             key={appointment.id}
+                            description={appointment.description}
                             time={appointment.time}
                             date={appointment.date}
                             status={appointment.status}
-                            description={appointment.description}
                         />
                     );
                 })}

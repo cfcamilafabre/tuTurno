@@ -2,7 +2,7 @@ import styles from './Appointment.module.css'
 
 const Appointment = ({date, time, status, description}) => {
 
-    const formattedDate = date.toLocaleDateString(); 
+    const formattedDate = date instanceof Date ? date.toLocaleDateString() : '';
 
     return (
         <>

@@ -11,6 +11,9 @@ export class Appointment {
     id: number;
 
     @Column()
+    description: string;
+
+    @Column()
     date: Date;
 
     @Column()

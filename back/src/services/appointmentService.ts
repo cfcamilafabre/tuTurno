@@ -27,7 +27,7 @@ const appointmentService = {
 
      if (user) {
       newAppointment.user = user;
-      AppDataSource.getRepository(Appointment).save(newAppointment)
+      await AppDataSource.getRepository(Appointment).save(newAppointment)
      }
 
      return newAppointment;
