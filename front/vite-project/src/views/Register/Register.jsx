@@ -24,9 +24,7 @@ const Register = () => {
     });
 
     const handleInput = (event) => {
-
         const { name, value } = event.target;
-
         //forma más pro
         setUserData({
             ...userData,
@@ -38,7 +36,26 @@ const Register = () => {
 
     const handleOnSubmit = (event) => {
         event.preventDefault();
-        alert(`Usuario registrado correctamente`)
+        axios.post('http://localhost:3000/users/register', userData)
+        .then(response => {
+            if (response.data.success) {
+                alert (`Usuario registrado correctamente`);
+                setUserData({
+                    name: '',
+                        lastname: '',
+                        email: '',
+                        birthdate: '',
+                        username: '',
+                        password: ''
+                    });
+                } else {
+                    alert('Ha ocurrido un error en el registro');
+                }
+            })
+            .catch(error => {
+                alert('Ha ocurrido un error en la conexión');
+                console.error('Error:', error);
+            });
     }
 
     return (
@@ -51,26 +68,32 @@ const Register = () => {
                     <div className={styles.formGroup}>
                         <label>Nombre:</label>
                         <input type='text' value={userData.name} name='name' onChange={handleInput} className="form-control" />
+                        {errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
                     </div>
                     <div className={styles.formGroup}>
                         <label>Apellido:</label>
                         <input type='text' value={userData.lastname} name='lastname' onChange={handleInput} className="form-control" />
+                        {errors.lastname && <p style={{ color: 'red' }}>{errors.lastname}</p>}
                     </div>
                     <div className={styles.formGroup}>
                         <label>Email:</label>
                         <input type='text' value={userData.email} name='email' onChange={handleInput} className="form-control" />
+                        {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
                     </div>
                     <div className={styles.formGroup}>
                         <label>Birthdate</label>
                         <input type='date' value={userData.birthdate} name='birthdate' onChange={handleInput} className="form-control" />
+                        {errors.birthdate && <p style={{ color: 'red' }}>{errors.birthdate}</p>}
                     </div>
                     <div className={styles.formGroup}>
                         <label>Usuario:</label>
                         <input type='text' value={userData.username} name='username' onChange={handleInput} className="form-control" />
+                        {errors.username && <p style={{ color: 'red' }}>{errors.username}</p>}
                     </div>
                     <div className={styles.formGroup}>
                         <label>Contraseña:</label>
                         <input type='password' value={userData.password} name='password' onChange={handleInput} className="form-control" />
+                        {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
                     </div>
                     <div>
                         <button className="btn btn-primary" id={styles.button} type='submit'>Registrarse</button>

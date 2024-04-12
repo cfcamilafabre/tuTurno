@@ -3,8 +3,6 @@ import validate from '../../helpers/validate'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../Login/Login.module.css'
 
-
-
 const Login = () => {
 
     const [userData, setUserData] = useState({
@@ -40,8 +38,20 @@ const Login = () => {
 
     const handleOnSubmit = (event) => {
         event.preventDefault();
-        alert(`Usuario loggeado correctamente`)
-    }
+        axios
+          .post("http://localhost:3000/users/login", userData)
+          .then((response) => {
+            if (response.data.success) {
+              alert("Usuario loggeado correctamente");
+            } else {
+              alert("Ha ocurrido un error en el login");
+            }
+          })
+          .catch((error) => {
+            alert("Ha ocurrido un error en la conexión");
+            console.error("Error:", error);
+          });
+      };
 
     return (
         <>
