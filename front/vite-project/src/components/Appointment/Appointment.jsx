@@ -7,13 +7,13 @@ const Appointment = ({date, time, status, description}) => {
     return (
         <>
         <div className={styles.cardAppointment}>
-            <ul>
-            <li className={styles.liCard}> <h4>{description}</h4> </li>
-            <li className={styles.liCard}> <h5>{formattedDate}</h5> </li>
-            <li className={styles.liCard}> <h5>{time}</h5> </li>
-            <li className={styles.liCard}><h5 className={status === 'canceled' ? styles.canceled : ''} >{status} </h5></li>
+            
+            <p className={styles.liCard}>{description}</p>
+            <span className={styles.liCard}>{formattedDate}</span>
+            <span className={styles.liCard}>{time}</span>
+            <span className={status === 'canceled' ? styles.canceled : ''} >{status} </span>
             {status === 'active' && <button className={styles.buttonCancel}>Cancelar</button>}
-            </ul>
+            
         </div>
         </>
     )

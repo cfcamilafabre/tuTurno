@@ -15,12 +15,12 @@ const Register = () => {
     });
 
     const [errors, setErrors] = useState({
-        name: 'Name is required',
-        lastname: 'Lastname is required',
-        email: 'Email is required',
-        birthdate: 'Birthdate is required',
-        username: "Username is required",
-        password: "Username is required"
+        name: 'El campo es requerido',
+        lastname: 'El campo es requerido',
+        email: 'El campo es requerido',
+        birthdate: 'El campo es requerido',
+        username: "El campo es requerido",
+        password: "El campo es requerido"
     });
 
     const handleInput = (event) => {
@@ -61,7 +61,7 @@ const Register = () => {
     return (
         <>
             <div>
-                <h4>Completá el formulario para registrarte</h4>
+                <h5>Completá el formulario para registrarte</h5>
             </div>
             <form onSubmit={handleOnSubmit}>
                 <div className={styles.formContainer}>
@@ -81,7 +81,7 @@ const Register = () => {
                         {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
                     </div>
                     <div className={styles.formGroup}>
-                        <label>Birthdate</label>
+                        <label>Fecha de nacimiento:</label>
                         <input type='date' value={userData.birthdate} name='birthdate' onChange={handleInput} className="form-control" />
                         {errors.birthdate && <p style={{ color: 'red' }}>{errors.birthdate}</p>}
                     </div>
@@ -96,7 +96,7 @@ const Register = () => {
                         {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
                     </div>
                     <div>
-                        <button className="btn btn-primary" id={styles.button} type='submit'>Registrarse</button>
+                        <button className="btn btn-primary" type='submit'>Registrarse</button>
                     </div>
                 </div>
             </form>

@@ -11,8 +11,8 @@ const Login = () => {
     });
 
     const [errors, setErrors] = useState({
-        username: "Username is required",
-        password: "Username is required"
+        username: "El campo es requerido",
+        password: "El campo es requerido"
     });
 
     const handleInput = (event) => {
@@ -56,7 +56,7 @@ const Login = () => {
     return (
         <>
         <div>
-            <h4>Completá el formulario para iniciar sesión</h4>
+            <h5>Completá el formulario para iniciar sesión</h5>
         </div>
         <form onSubmit={handleOnSubmit}>
             <div className={styles.formContainer}>
@@ -71,7 +71,7 @@ const Login = () => {
                     {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
                 </div>
                 <div>
-                    <button className="btn btn-primary" id={styles.button} type='submit'>Ingresar</button>
+                    <button className="btn btn-primary"  type='submit'>Ingresar</button>
                 </div>
             </div>
         </form>

@@ -19,7 +19,7 @@ const Navbar = () => {
                         <li className={styles.liNavBar}><a className="nav-link" href="">Registrarme</a></li>
                     </div>
                     <div>
-                        <li className={styles.liNavBar}><a className="nav-link" href="">Login</a></li>
+                        <li className={styles.liNavBar}><a className="nav-link" href="">Ingresar</a></li>
                     </div>
                 </ul>
             </div>

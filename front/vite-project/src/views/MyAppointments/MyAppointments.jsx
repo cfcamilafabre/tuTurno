@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Appointment from '../../components/Appointment/Appointment';
 import styles from './MyAppointments.module.css'
+import axios from "axios";
 
 const MyAppointments = () => {
 
@@ -10,6 +11,7 @@ const MyAppointments = () => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('http://localhost:3000/appointments');
+                console.log('Datos de turnos obtenidos:', response.data);
                 setAppointments(response.data);
             } catch (error) {
                 ('Error al obtener los datos', error);
@@ -21,7 +23,7 @@ const MyAppointments = () => {
 
     return (
         <>
-            <h1>Mis turnos</h1>
+            <h5>Mis turnos</h5>
             <div className={styles.containerCards}>
                 {appointments.map((appointment) => {
                     return (
