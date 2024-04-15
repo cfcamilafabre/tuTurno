@@ -1,4 +1,5 @@
 import './App.css'
+import { Routes, Route } from 'react-router-dom';
 import Home from './views/Home/Home'
 import Navbar from './components/NavBar/Navbar'
 import MyAppointments from './views/MyAppointments/MyAppointments'
@@ -9,10 +10,13 @@ function App() {
   return (
     <>
       <Navbar />
-      <Home />
-      <MyAppointments />
-      <Register />
-      <Login />
+
+      <Routes>
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/' element={<Home />}/>
+        <Route path='/myappointments' element={<MyAppointments />} />
+      </Routes>
     </>
   )
 }

@@ -1,7 +1,7 @@
 .h1Home{
     color: rgba(57, 17, 69, var(--tw-text-opacity));
     text-decoration: none;
-    font-size: 2vw;
+    font-size: 30px;
     font-weight: 600;
     line-height: 1.43;
     margin: 15px;
@@ -14,22 +14,17 @@
     justify-content: center;
     margin: 10px;
     line-height: 1.5;
+    font-size: 18px;
 }
 
-.buttonContainer {
+.buttonContainer{
+    display: flex;
+    justify-content:center;
+    margin: 20px;
+}
+
+.crearCuentaDiv{
     display: flex;
     justify-content: center;
-}
-
-.buttonHome{
-    font-family: inherit;
-    font-size: 100%;
-    line-height: inherit;
-    color: rgba(57, 17, 69, var(--tw-text-opacity));
-    background: #d0d2d6 ;
-    margin: 10px;
-    padding: 10px;
-    border: 0 solid #c0c3c9;
-    border-radius: 1em;
-    cursor: pointer;
+    text-align: center;
 }

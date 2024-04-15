@@ -10,36 +10,43 @@ const Login = () => {
         password: '',
     });
 
-    const [errors, setErrors] = useState({
-        username: "El campo es requerido",
-        password: "El campo es requerido"
-    });
+    const [errors, setErrors] = useState({});
 
     const handleInput = (event) => {
         const { name, value } = event.target;
 
-        // forma más descriptiva
-        if (name === username) {
-            setUserData({
-                ...userData,
-                username: value
-            })
-        }
+        setUserData({
+            ...userData,
+            [name]: value
+        });
+    }
 
-        if (name === password) {
-            setUserData({
-                ...userData,
-                password: value
-            })
-        }
+    const handleBlur = (event) => {
+        const { name, value } = event.target;
 
-        setErrors(validate(userData));
+        setErrors({
+            ...errors,
+            [name]: value.trim() === '' ? 'Este campo es requerido' : ''
+        });
     }
 
     const handleOnSubmit = (event) => {
         event.preventDefault();
-        axios
-          .post("http://localhost:3000/users/login", userData)
+
+        const formErrors = {};
+        if (userData.username.trim() === '') {
+            formErrors.username = 'Este campo es requerido';
+        }
+        if (userData.password.trim() === '') {
+            formErrors.password = 'Este campo es requerido';
+        }
+
+        if (Object.keys(formErrors).length > 0) {
+            setErrors(formErrors);
+            return;
+        }
+
+        axios.post("http://localhost:3000/users/login", userData)
           .then((response) => {
             if (response.data.success) {
               alert("Usuario loggeado correctamente");
@@ -51,7 +58,7 @@ const Login = () => {
             alert("Ha ocurrido un error en la conexión");
             console.error("Error:", error);
           });
-      };
+    };
 
     return (
         <>
@@ -62,16 +69,16 @@ const Login = () => {
             <div className={styles.formContainer}>
                 <div className={styles.formGroup}>
                     <label>Usuario:</label>
-                    <input type='text' value={userData.username} name='username' onChange={handleInput}  className="form-control"/>
+                    <input type='text' value={userData.username} name='username' onChange={handleInput} onBlur={handleBlur} className="form-control"/>
                     {errors.username && <p style={{ color: 'red' }}>{errors.username}</p>}
                 </div>
                 <div className={styles.formGroup}>
                     <label>Contraseña:</label>
-                    <input type='password' value={userData.password} name='password' onChange={handleInput} className="form-control"/>
+                    <input type='password' value={userData.password} name='password' onChange={handleInput} onBlur={handleBlur} className="form-control"/>
                     {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
                 </div>
                 <div>
-                    <button className="btn btn-primary"  type='submit'>Ingresar</button>
+                    <button disabled={!userData.username || !userData.password} className="btn btn-primary"  type='submit'>Ingresar</button>
                 </div>
             </div>
         </form>
