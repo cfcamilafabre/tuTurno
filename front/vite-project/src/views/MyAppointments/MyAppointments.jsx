@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
 import Appointment from '../../components/Appointment/Appointment';
 import styles from './MyAppointments.module.css'
 import axios from "axios";
 
 const MyAppointments = () => {
+
+    const userAppointments = useSelector((state) => state.userAppointments);
 
     const [appointments, setAppointments] = useState([]);
 

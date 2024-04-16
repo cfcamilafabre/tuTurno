@@ -1,9 +1,13 @@
 import { useState } from "react";
-import validate from '../../helpers/validate'
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../redux/userSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styles from '../Login/Login.module.css'
+import styles from '../Login/Login.module.css';
+import axios from 'axios';
 
 const Login = () => {
+
+    const dispatch = useDispatch();
 
     const [userData, setUserData] = useState({
         username: '',
@@ -49,7 +53,9 @@ const Login = () => {
         axios.post("http://localhost:3000/users/login", userData)
           .then((response) => {
             if (response.data.success) {
+                dispatch(loginUser(response.data.user));
               alert("Usuario loggeado correctamente");
+
             } else {
               alert("Ha ocurrido un error en el login");
             }

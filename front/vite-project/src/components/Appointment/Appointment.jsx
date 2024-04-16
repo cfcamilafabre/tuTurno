@@ -12,7 +12,8 @@ const Appointment = ({date, time, status, description}) => {
             <span className={styles.liCard}>{formattedDate}</span>
             <span className={styles.liCard}>{time}</span>
             <span className={status === 'canceled' ? styles.canceled : ''} >{status} </span>
-            {status === 'active' && <button className={styles.buttonCancel}>Cancelar</button>}
+            {/* {status === 'active' && <button className={styles.buttonCancel}>Cancelar</button>} */}
+            <button disabled={status === 'canceled'} className={styles.buttonCancel}> Cancelar </button>
             
         </div>
         </>
