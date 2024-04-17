@@ -22,7 +22,7 @@ const userService = {
     const user = await AppDataSource.getRepository(User).findOneBy({
       id
     });
-    if (!user) throw Error ("Usuario no encontrado");
+    if (!user) throw Error("Usuario no encontrado");
     return user;
   },
 
@@ -35,22 +35,32 @@ const userService = {
       password: userData.password,
       userId: user.id,
     };
-    
+
     const credentialId = await credentialService.createCredential(credentialData);
     user.credential = credentialId;
     await AppDataSource.getRepository(User).save(user);
-    
+
+    if (result) {
+      console.log("Usuario guardado correctamente");
+    }
+
     return user;
   },
 
-  deleteUser: async (id: number)=> {
-   
-  },
-
+  loginUser: async (username: string, password: string) => {
+    const user = await AppDataSource.getRepository(User).findOne({
+      where: {
+        credential: {
+          username: username
+        }
+      },
+      relations: ['credential']
+    });
+    if (user && user.credential.password === password) {
+      return user;
+    } else {
+      return null;
+    }
+  }
 }
 export default userService;
-
-// app.delete("/users/:id", async function (req: Request, res: Response) {
-//   const results = await myDataSource.getRepository(User).delete(req.params.id)
-//   return res.send(results)
-// })

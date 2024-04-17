@@ -10,11 +10,16 @@ const appointmentService = {
     return appointments;
   },
 
-  getAppointmentById: async (id: number): Promise<Appointment | null> => {
-    const appointment = await AppDataSource.getRepository(Appointment).findOneBy({
-      id
-    })
-    return appointment
+  getAppointmentByUserId: async (id: number): Promise<Appointment[] | null> => {
+    const appointments = await AppDataSource.getRepository(Appointment).find({
+      where: {
+        user: {
+          id: id
+        }
+      },
+      relations: ['user']
+    });
+    return appointments;
   },
 
   createAppointment: async ( appointment:appointmentdDto) => {
@@ -34,8 +39,23 @@ const appointmentService = {
   },
 
 
-  cancelAppointment: (id: number)=> {}
-  
+  cancelAppointment: async (id: number): Promise<Appointment | null> => {
+    // Buscar el turno por su ID
+    const appointment = await AppDataSource.getRepository(Appointment).findOneBy({id});
+
+    // Verificar si el turno existe
+    if (!appointment) {
+      throw new Error("Turno no encontrado");
+    }
+
+    // Cambiar el estado del turno a "cancelled"
+    appointment.status = "cancelled";
+
+    // Guardar los cambios en la base de datos
+    await AppDataSource.getRepository(Appointment).save(appointment);
+
+    return appointment;
+  }
 };
 
 export { appointmentService }

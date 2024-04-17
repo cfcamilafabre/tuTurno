@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../redux/userSlice';
+import { loginUser } from '../../redux/reducer';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../Login/Login.module.css';
 import axios from 'axios';
@@ -8,6 +9,8 @@ import axios from 'axios';
 const Login = () => {
 
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const [userData, setUserData] = useState({
         username: '',
@@ -54,11 +57,10 @@ const Login = () => {
           .then((response) => {
             if (response.data.success) {
                 dispatch(loginUser(response.data.user));
-              alert("Usuario loggeado correctamente");
-
-            } else {
-              alert("Ha ocurrido un error en el login");
-            }
+                navigate('/myappointments')
+            } 
+            alert(response.data.message);
+            
           })
           .catch((error) => {
             alert("Ha ocurrido un error en la conexión");
@@ -83,8 +85,8 @@ const Login = () => {
                     <input type='password' value={userData.password} name='password' onChange={handleInput} onBlur={handleBlur} className="form-control"/>
                     {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
                 </div>
-                <div>
-                    <button disabled={!userData.username || !userData.password} className="btn btn-primary"  type='submit'>Ingresar</button>
+                <div className={styles.containerButton}>
+                    <button disabled={!userData.username || !userData.password} className="btn btn-secondary"  type='submit'>Ingresar</button>
                 </div>
             </div>
         </form>

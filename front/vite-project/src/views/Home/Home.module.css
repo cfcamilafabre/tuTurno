@@ -5,8 +5,12 @@
     font-weight: 600;
     line-height: 1.43;
     margin: 15px;
+    padding: 15px;
     display:flex;
     justify-content: center;
+    background-color: #ededed;
+    width: max-content;
+    
 }
 
 .pHome {
@@ -27,4 +31,12 @@
     display: flex;
     justify-content: center;
     text-align: center;
+}
+
+.containerHome {
+    margin: 20px;
+    padding: 20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }

@@ -29,11 +29,21 @@ export const getUserById = async (req: Request, res: Response) => {
 };
 
 export const loginUser = async (req: Request, res: Response) => {
-  res.send("Usuario Loggeado")
+  try{
+    const { username, password } = req.body;
+    const user: User | null = await userService.loginUser(username, password)
+    if (!user) { 
+      res.status(200).json({ success: false, user: null, message:"Credenciales incorrectas" });
+    }
+    else {
+      res.status(200).json({ success: true, user: user, message:"Usuario logeado correctamente" });
+    }
+    
+  } catch (error) {
+    res.status(500).json({message: 'Error en el controller login'})
+  }
 }
 
 export const deleteUser = async (req: Request, res: Response) => {
-  const { id } = req.body
-  await userService.deleteUser(id)
-  res.status (200).json({message: "Eliminado correctamente"})
+ 
 }

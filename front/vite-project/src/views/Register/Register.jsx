@@ -1,7 +1,7 @@
 import { useState } from "react";
 import validate from '../../helpers/validate';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styles from '../../views/Login/Login.module.css'
+import styles from '../Register/Register.module.css'
 import axios from 'axios';
 
 const Register = () => {
@@ -123,8 +123,8 @@ const Register = () => {
                         <input type='password' value={userData.confirmPassword} name='confirmPassword' onChange={handleInput} className="form-control" />
                         {errors.confirmPassword && <p style={{ color: 'red' }}>{errors.confirmPassword}</p>}
                     </div>
-                    <div>
-                        <button disabled={!userData.name || !userData.email || !userData.birthdate || !userData.nDni || !userData.username || !userData.password} className="btn btn-primary" type='submit'>Registrarse</button>
+                    <div className={styles.containerButton}>
+                        <button disabled={!userData.name || !userData.email || !userData.birthdate || !userData.nDni || !userData.username || !userData.password} className="btn btn-secondary" type='submit'>Registrarse</button>
                     </div>
                 </div>
             </form>
