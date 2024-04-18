@@ -27,10 +27,10 @@ const Appointment = ({ id, date, time, status, description }) => {
             <div className="card" style={{ margin: "8px" }}>
                 <div className="card-body" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                     <h5 className="card-title">Tu turno</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">{date}</h6>
+                    <h6 className="card-subtitle mb-2 text-muted">{date && new Date(date).toLocaleString()}</h6>
                     <p className="card-text">{time}</p>
                     <p className="card-text">{description}</p>
-                    {!isCancelled ? (
+                    {!isCancelled || (new Date(date) <= new Date()) ? (
                         <button onClick={handleClick} className="btn btn-danger">Cancelar</button>
                     ) : (
                         <button disabled className="btn btn-light">Cancelado</button>
