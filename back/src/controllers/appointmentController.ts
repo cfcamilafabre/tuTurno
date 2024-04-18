@@ -26,7 +26,7 @@ export const cancelAppointment = async (req: Request, res: Response) => {
   try {
     const id = parseInt(req.params.id);
     await appointmentService.cancelAppointment(id);
-    res.status(200).send({success:true});
+    res.status(200).send({message: 'Turno cancelado OK', success:true});
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
   }

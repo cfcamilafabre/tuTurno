@@ -5,14 +5,16 @@ const Appointment = ({ id, date, time, status, description }) => {
     const formattedDate = date instanceof Date ? date.toLocaleDateString() : '';
     console.log('formattedDate:', formattedDate);
 
-    const [isCancelled, setIsCancelled] = useState(false)
+    const [isCancelled, setIsCancelled] = useState(status)
 
     const handleClick = () => {
        
         // Realizar la solicitud PUT para cancelar la cita
         axios.put(`http://localhost:3000/appointments/cancel/${id}`)
             .then((response) => {
-                setIsCancelled(!isCancelled)
+                if (response.data.success) {
+                    setIsCancelled(true)
+                }
                 // Manejar la respuesta si es necesario
                 console.log('Appointment cancelled:', response.data);
             })
