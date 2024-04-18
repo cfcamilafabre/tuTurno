@@ -42,7 +42,8 @@ const appointmentService = {
   cancelAppointment: async (id: number): Promise<Appointment | null> => {
     // Buscar el turno por su ID
     const appointment = await AppDataSource.getRepository(Appointment).findOneBy({id});
-
+    console.log(appointment)
+    console.log(id)
     // Verificar si el turno existe
     if (!appointment) {
       throw new Error("Turno no encontrado");
@@ -52,7 +53,7 @@ const appointmentService = {
     appointment.status = "cancelled";
 
     // Guardar los cambios en la base de datos
-    await AppDataSource.getRepository(Appointment).save(appointment);
+    await AppDataSource.getRepository(Appointment).update(id, { status: "cancelled" });
 
     return appointment;
   }

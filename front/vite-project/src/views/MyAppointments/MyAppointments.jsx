@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { loginUser } from '../../redux/reducer';
 import Appointment from '../../components/Appointment/Appointment';
 import styles from './MyAppointments.module.css';
 import axios from "axios";
 
 const MyAppointments = () => {
     const dispatch = useDispatch();
-    const userState= useSelector((state) => state.user);
+    const userState = useSelector((state) => state.user);
 
 
     const [appointments, setAppointments] = useState([]);
@@ -22,7 +21,7 @@ const MyAppointments = () => {
         time: false,
         date: false
     });
-    const [isFormValid, setIsFormValid] = useState(false); 
+    const [isFormValid, setIsFormValid] = useState(false);
 
     const fetchData = async () => {
         try {
@@ -31,7 +30,7 @@ const MyAppointments = () => {
         } catch (error) {
             console.error('Error al obtener los datos', error);
         }
-    }; 
+    };
 
     useEffect(() => {
         fetchData();
@@ -50,17 +49,17 @@ const MyAppointments = () => {
         formData.userId = userState.user.id;
         formData.time.toString()
         axios.post("http://localhost:3000/appointments/schedule", formData)
-          .then((response) => {
-           if (response.data.success) {
-            fetchData();
-        } 
-        alert(response.data.message);
-      })
+            .then((response) => {
+                if (response.data.success) {
+                    fetchData();
+                }
+                alert(response.data.message);
+            })
 
-      .catch((error) => {
-        alert("Ha ocurrido un error en la conexión");
-        console.error("Error:", error);
-      });
+            .catch((error) => {
+                alert("Ha ocurrido un error en la conexión");
+                console.error("Error:", error);
+            });
     };
 
     const handleBlur = (event) => {
@@ -83,7 +82,9 @@ const MyAppointments = () => {
             !Object.values(formErrors).some(error => error));
     }, [formData, formErrors]);
 
-    const today = new Date().toISOString().split('T')[0]; // Obtener la fecha actual
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1); // Obtener la fecha actual
 
     return (
         <>
@@ -124,12 +125,12 @@ const MyAppointments = () => {
                             <div className="col">
                                 <label>Hora:</label>
                                 <input
-                                    type="number"
+                                    type="time"
                                     className={`form-control ${formErrors.time ? 'is-invalid' : ''}`}
                                     name="time"
-                                    min="9"
-                                    max="18"
-                                    step="1"
+                                    min="09:00:00"
+                                    max="18:00:00"
+                                    step="3600"
                                     value={formData.time}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
@@ -145,7 +146,7 @@ const MyAppointments = () => {
                                     className={`form-control ${formErrors.date ? 'is-invalid' : ''}`}
                                     name="date"
                                     value={formData.date}
-                                    min={today} // Establecer la fecha mínima como la fecha actual
+                                    min={tomorrow.toISOString().split('T')[0]}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />

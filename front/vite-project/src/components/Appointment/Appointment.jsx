@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const Appointment = ({ id, date, time, status, description }) => {
     const formattedDate = date instanceof Date ? date.toLocaleDateString() : '';
+    console.log('formattedDate:', formattedDate);
 
     const [isCancelled, setIsCancelled] = useState(false)
 
@@ -26,7 +27,7 @@ const Appointment = ({ id, date, time, status, description }) => {
             <div className="card" style={{ margin: "8px" }}>
                 <div className="card-body" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                     <h5 className="card-title">Tu turno</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">{formattedDate}</h6>
+                    <h6 className="card-subtitle mb-2 text-muted">{date}</h6>
                     <p className="card-text">{time}</p>
                     <p className="card-text">{description}</p>
                     {!isCancelled ? (

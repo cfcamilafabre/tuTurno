@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 const Navbar = () => {
 
-    const [showMyAppointments, setShowMyAppointments] = useState(false)
+    const [isLogged, setIsLogged] = useState(false)
 
 
     const userLoggedState = useSelector((state) => state.user.user);
@@ -15,9 +15,9 @@ const Navbar = () => {
     useEffect(() => {
 
         if (userLoggedState) {
-            setShowMyAppointments(true)
+            setIsLogged(true)
         } else {
-            setShowMyAppointments(false)
+            setIsLogged(false)
         }
     }, [userLoggedState])
 
@@ -31,17 +31,21 @@ const Navbar = () => {
                     <div>
                         <li><Link to="/" className={styles.liNavBar}> Inicio </Link> </li>
                     </div>
-                    {showMyAppointments &&
+                    {isLogged &&
                         <div>
                             <li><Link to="/myappointments" className={styles.liNavBar}> Mis turnos </Link> </li>
                         </div>}
+                    {!isLogged &&
+                        <>
+                            <div>
+                                <li><Link to="/register" className={styles.liNavBar}> Registrarme</Link> </li>
+                            </div>
 
-                    <div>
-                        <li><Link to="/register" className={styles.liNavBar}> Registrarme</Link> </li>
-                    </div>
-                    <div>
-                        <li><Link to="/login" className={styles.liNavBar}> Ingresar </Link> </li>
-                    </div>
+                            <div>
+                                <li><Link to="/login" className={styles.liNavBar}> Ingresar </Link> </li>
+                            </div>
+                        </>
+                    }
                 </ul>
             </div>
         </div>
