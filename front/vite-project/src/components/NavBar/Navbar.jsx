@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Dropdown from "react-bootstrap/Dropdown";
 import { UlNavBar } from "../UlNavBar/UlNavBar";
-import DropdownMenu from "../DropdownMenu/DropdwonMenu";
+import DropdownMenu from "../DropdownMenu/DropdownMenu";
 
 const Navbar = () => {
   const [isLogged, setIsLogged] = useState(false);

@@ -18,4 +18,5 @@
 
 .liNavBar:hover{
     color: #67DCFF;
+    transition: all .4s ease;
 }
