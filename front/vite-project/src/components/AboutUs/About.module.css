@@ -1,0 +1,33 @@
+.sectionAbout {
+    display:flex;
+    flex-direction: row;
+}
+
+.container {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.subtitleSection {
+    color: #67DCFF;
+    margin: 30px 0px 5px 30px;
+}
+
+.titleSection {
+    color: rgb(29, 0, 172);
+    margin: 5px 0px 5px 20px;
+}
+
+.pSection {
+    color: #646464;
+    margin: 12px 0px 0px 20px;
+    width: 50vw;
+}
+
+.buttonContainer {
+    margin: 12px;
+    margin-left: 20px;
+}
+
