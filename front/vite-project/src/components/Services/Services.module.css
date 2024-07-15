@@ -1,0 +1,33 @@
+.sectionServices {
+background-color: whitesmoke;
+min-height: 100vw;
+}
+
+.sectionTitle {
+    color: #67DCFF;
+    font-size: 20px;
+    padding-top: 12px;
+}
+
+.sectionSubtitle {
+    color: rgb(29, 0, 172);
+    font-size: x-large;
+    font-weight: 700;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.cardsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    padding: 4rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}

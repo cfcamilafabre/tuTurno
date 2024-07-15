@@ -17,7 +17,7 @@ export const About = () => {
         <a className="btn btn-primary" href="#">Ver más</a>
         </div>
       </div>
-      <div className={styles.container}>
+      <div className={styles.containerImage}>
         <img src="/team2.jpg" alt="imagen del equipo de trabajo" className="img-thumbnail"></img>
       </div>
     </div>
