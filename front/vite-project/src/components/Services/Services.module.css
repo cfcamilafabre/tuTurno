@@ -1,17 +1,15 @@
 .sectionServices {
 background-color: whitesmoke;
-min-height: 100vw;
+padding: 4em 0em 4em 0em;
 }
 
 .sectionTitle {
     color: #67DCFF;
-    font-size: 20px;
     padding-top: 12px;
 }
 
 .sectionSubtitle {
     color: rgb(29, 0, 172);
-    font-size: x-large;
     font-weight: 700;
 }
 
@@ -30,4 +28,12 @@ min-height: 100vw;
     padding: 4rem;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.card:hover{
+    background-color: #67DCFF;
+    color: white;
+    transition: 0.5s;
+    border-color: white;
+    cursor:pointer;
 }

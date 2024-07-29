@@ -7,10 +7,10 @@ export const Services = () => {
     <>
       <section className={styles.sectionServices}>
         <div className={styles.container}>
-          <h5 className={styles.sectionTitle}>ESPECIALIDADES</h5>
-          <span className={styles.sectionSubtitle}>
+          <h4 className={styles.sectionTitle}>ESPECIALIDADES</h4>
+          <h3 className={styles.sectionSubtitle}>
             Conocé todas las especialidades
-          </span>
+          </h3>
         </div>
 
         <div className={styles.cardsContainer}>

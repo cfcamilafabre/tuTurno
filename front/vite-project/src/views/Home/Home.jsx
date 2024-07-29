@@ -5,6 +5,7 @@ import styles from "./Home.module.css";
 import Carrousel from '../../components/Carrousel/Carrousel';
 import About from '../../components/AboutUs/About';
 import Services from '../../components/Services/Services';
+import Method from '../../components/Method/Method';
 
 const Home = () => {
 
@@ -27,6 +28,7 @@ const Home = () => {
         <Carrousel></Carrousel>
         <About></About>
         <Services></Services>
+        <Method></Method>
             <div className={styles.containerHome}>
                 <h1 className={styles.h1Home}> ¡Bienvenido a tuTurno! </h1>
                 <h4 className={styles.pHome}>Ahora reservar tu turno es mucho más sencillo. Podes agendar día y horario haciendo click en el botón. <br /> Recordá que nos podes encontrar de lunes a viernes, de 9:00 a 18:00hs.</h4>
