@@ -1,0 +1,31 @@
+.sectionReviews {
+  background: rgb(219, 255, 254);
+  background: radial-gradient(
+    circle,
+    rgba(219, 255, 254, 0.6054796918767507) 34%,
+    rgba(103, 220, 255, 0.105) 100%
+  );
+  display:flex;
+  flex-direction: row;
+}
+
+.divImage {
+    width: 50vw;
+}
+
+.imageReviews{ 
+    padding: 4em 0em 4em 0em;
+}
+
+.divQuotes {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.titleSection {
+    font-weight: bold;
+}

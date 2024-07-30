@@ -1,0 +1,10 @@
+.reviewPacient {
+margin: 2em;
+color: gray;
+font-size:large;
+}
+
+.namePacient {
+    font-size: larger;
+    font-weight:600;
+}
