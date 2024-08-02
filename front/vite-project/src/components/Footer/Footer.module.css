@@ -1,5 +1,5 @@
 .sectionFooter {
-    background-color: whitesmoke;
+    background-color: #7428ea;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -14,14 +14,22 @@
     display: flex;
     flex-direction: column;
     width: 1/3;
+    margin: 3em;
 }
 
 .logoImg {
-    width: 9em;
+    width: 10em;
 }
 
 .span {
-    color: gray;
+    color: whitesmoke;
     font-size: large;
     margin-left: 1em;
+}
+
+.links {
+    gap: 1em;
+    text-decoration: none;
+    padding-top: 1em;
+    margin-left: 4em;
 }
